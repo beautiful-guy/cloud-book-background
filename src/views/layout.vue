@@ -72,10 +72,17 @@
     width: 200px;
     background-color:#545c64;
     overflow: hidden;
+    /deep/ {
+      .el-menu {
+        border-right: none;
+      }
+    }
   }
+
   .content{
     margin-left: 200px;
     padding: 15px;
   }
 }
+
 </style>

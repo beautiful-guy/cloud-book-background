@@ -40,6 +40,12 @@
           </template>
         </el-table-column>
       </el-table>
+      <el-pagination
+        background
+        layout="prev, pager, next"
+        @current-change="pageChange"
+        :total="50">
+      </el-pagination>
     </div>
 </template>
 
@@ -48,16 +54,22 @@
       data(){
         return{
           tableData:[
-          ]
+          ],
+          page:1
         }
       },
       methods:{
         getData(){
-          this.$axios.get('user').then(res=>{
+          this.$axios.get('user',{pn:this.page}).then(res=>{
             if(res.code == 200){
               this.tableData = res.data
             }
           })
+        },
+        pageChange(page){
+          // console.log(page)
+          this.page = page
+          this.getData();
         },
         queryUser(){
 

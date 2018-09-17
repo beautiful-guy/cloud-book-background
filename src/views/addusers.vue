@@ -3,15 +3,7 @@
       <h2>请根据下方提示输入你的信息</h2>
       <div class="profile">
         <h4>点击右方上传你的头像</h4>
-      <el-upload
-        class="avatar-uploader"
-        action="https://m.yaojunrong.com/api/admin/user"
-        :show-file-list="false"
-        :on-success="handleAvatarSuccess"
-        :before-upload="beforeAvatarUpload">
-        <img v-if="imageUrl" :src="formData.avatar" class="avatar">
-        <i v-else class="el-icon-plus avatar-uploader-icon"></i>
-      </el-upload>
+        <upimg @receiveMsg="showMsg"></upimg>
       </div>
       <div>
       <el-form :inline="true"  class="demo-form-inline">
@@ -47,10 +39,13 @@
 </template>
 
 <script>
+  import upimg from '@/components/upimg';
     export default {
+      components:{
+        upimg
+      },
       data() {
         return {
-          imageUrl: '',
           formData:{
             username:'',
             password:'',
@@ -58,25 +53,12 @@
             desc:'',
             nickname:'',
             email:''
-          }
+          },
+          token:''
         };
       },
       methods: {
-        handleAvatarSuccess(res, file) {
-          this.imageUrl = URL.createObjectURL(file.raw);
-        },
-        beforeAvatarUpload(file) {
-          const isJPG = file.type === 'image/jpeg';
-          const isLt10M = file.size / 1024 / 1024 < 10;
 
-          if (!isJPG) {
-            this.$message.error('上传头像图片只能是 JPG 格式!');
-          }
-          if (!isLt10M) {
-            this.$message.error('上传头像图片大小不能超过 10MB!');
-          }
-          return isJPG && isLt10M;
-        },
         submitdata(){
           this.$axios.post('/user',this.formData).then(res=>{
             if(res.code == 200){
@@ -85,6 +67,9 @@
               this.$message.error(res.msg)
             }
           })
+        },
+        showMsg(res){
+          this.formData.avatar = res;
         }
       }
     }

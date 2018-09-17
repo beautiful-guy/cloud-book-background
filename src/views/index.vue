@@ -9,7 +9,6 @@
         name: "index"
     }
 </script>
-
 <style scoped>
 
 </style>
