@@ -9,7 +9,11 @@ const components = {
   layout:()=>import('@/views/layout'),
   index:()=>import('@/views/index'),
   users:()=>import('@/views/users'),
-  addusers:()=>import('@/views/addusers')
+  addusers:()=>import('@/views/addusers'),
+  edituser:()=>import('@/views/edituser'),
+  userDetail:()=>import('@/views/userDetail'),
+  getallbooks:()=>import('@/bookComponent/getallbooks'),
+  setPassword:()=>import('@/views/setPassword')
 }
 export default new Router({
   routes: [
@@ -41,11 +45,30 @@ export default new Router({
           meta:{
             title:'用户管理'
           },
-          component:components.users
+          component:components.users,
         },
         {
           path:'addusers',
           component:components.addusers
+        },
+        {
+          path:'edituser',
+          component:components.edituser
+        },
+        {
+          path:'userDetail',
+          meta:{
+            title:'用户详情'
+          },
+          component:components.userDetail,
+        },
+        {
+          path:'getallbooks',
+          component:components.getallbooks
+        },
+        {
+          path:'setPassword',
+          component:components.setPassword
         }
       ]
     }

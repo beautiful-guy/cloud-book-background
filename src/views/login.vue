@@ -4,12 +4,12 @@
   <div class="main-view">
     <h2 class="main-view-title">请登录</h2>
     <div class="main-view-wrapper">
-    <el-form>
-      <el-form-item label="用户名:" >
+    <el-form refs="form" :model="formData" :rules="rules">
+      <el-form-item label="用户名:" prop="username">
         <el-input v-model="formData.username" placeholder="请输入用户名"></el-input>
       </el-form-item>
-      <el-form-item label="密码:">
-        <el-input v-model="formData.password" type="password" placeholder="请输入密码"></el-input>
+      <el-form-item label="密码:" prop="password">
+        <el-input v-model="formData.password" type="password" placeholder="请输入密码" @keyup.enter.native="handlelogin"></el-input>
       </el-form-item>
     </el-form>
       <el-row class="btn">
@@ -25,12 +25,34 @@
     export default {
       name: "login",
       data() {
+        var validateUser = (rule, value, callback)=>{
+          if(!value){
+            callback(new Error('请输入合法的用户名'))
+          }else {
+            callback()
+          }
+        };
+        var validatePass = (rule, value, callback)=>{
+          if(value&&value.length>=5){
+            callback();
+          }else {
+            callback(new Error('请输入合法的密码'));
+          }
+        }
         return {
           formData: {
             username: '',
             password: ''
           },
           isloading:false,
+          rules: {
+            username: [
+              { validator: validateUser, trigger: 'blur' }
+            ],
+            password: [
+              { validator: validatePass, trigger: 'blur' }
+            ]
+          }
         }
       },
       methods: {
@@ -38,6 +60,7 @@
           this.isloading = true;
           this.$axios.post('/login',this.formData).then(res=>{
             if(res.code == 200){
+              this.$store.commit('CHANGE_USERINFO',res.data)
               this.$message.success('登录成功');
               setTimeout(()=>{
                 this.$router.push('/layout')
@@ -49,13 +72,11 @@
           }).catch(err=>{
             this.isloading = false;
           })
-
-        }
-        ,
+        },
         resetForm() {
           this.formData.username = '';
           this.formData.password = '';
-        }
+        },
       }
     }
 </script>

@@ -33,6 +33,22 @@ const xhr = {
         reject(err)
       })
     })
+  },
+  fetch(url,data,config,methods){
+    return new Promise((resolve,reject)=>{
+      instance[methods](url,data,config).then(res=>{
+        if(res.data.code == 401){
+          Message.error('登录状态失效，请重新登录');
+          router.push('/login')
+        }
+        resolve(res.data)
+      }).catch(err=>{
+        reject(err)
+      })
+    })
+  },
+  put(url,data,config){
+    return this.fetch(url,data,config,'put')
   }
 }
 export const $axios = xhr;

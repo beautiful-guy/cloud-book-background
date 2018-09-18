@@ -6,7 +6,11 @@
         <!--<input type="text" name="token" v-model="token">-->
         <!--<button>提交</button>-->
       <!--</form>-->
-      <input type="file" name="file" @change="handleChange">
+      <label class="upload-wrap">
+        <i class="el-icon-plus"></i>
+      <input type="file" name="file" @change="handleChange" style="display: none">
+        <img :src="imgUrl" alt="">
+      </label>
     </div>
 </template>
 
@@ -53,6 +57,27 @@
     }
 </script>
 
-<style scoped>
-
+<style scoped lang="scss">
+  .upload-wrap{
+    display: block;
+    width: 100px;
+    height: 100px;
+    border: 1px solid #e8e8e8;
+    border-radius: 6px;
+    cursor: pointer;
+    position: relative;
+    .el-icon-plus{
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform:translate(-50%,-50%);
+    }
+    img{
+      width: 100px;
+      height: 100px;
+    }
+  }
+  .upload-wrap:hover{
+    border-color: #3af;
+  }
 </style>

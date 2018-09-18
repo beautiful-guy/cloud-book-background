@@ -1,5 +1,9 @@
 <template>
     <div class="wrapper">
+      <el-breadcrumb separator="/">
+        <el-breadcrumb-item :to="{ path: '/layout/index' }">首页</el-breadcrumb-item>
+        <el-breadcrumb-item>添加用户</el-breadcrumb-item>
+      </el-breadcrumb>
       <h2>请根据下方提示输入你的信息</h2>
       <div class="profile">
         <h4>点击右方上传你的头像</h4>

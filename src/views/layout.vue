@@ -3,6 +3,12 @@
       <div class="header">
         <h2>欢迎来到云书后台操作系统</h2>
       </div>
+      <div class="portrait">
+        <img class="imgs" :src="avatar" alt="">
+        <p class="nick">{{nickname}}</p>
+        <p class="describe">{{desc}}</p>
+        <el-button type="info" round size="small" @click="toggleToUser">修改个人信息</el-button>
+      </div>
       <div class="sidebar">
         <el-menu
           :router="true"
@@ -29,18 +35,20 @@
             </template>
             <el-menu-item-group>
               <template slot="title">分类管理</template>
-              <el-menu-item index="/layout/index">分类列表</el-menu-item>
+              <el-menu-item index="/layout/getallbooks">分类列表</el-menu-item>
               <el-menu-item index="/layout/users">添加分类</el-menu-item>
             </el-menu-item-group>
           </el-submenu>
-          <el-menu-item index="3" disabled>
-            <i class="el-icon-document"></i>
-            <span slot="title">导航三</span>
-          </el-menu-item>
-          <el-menu-item index="4">
-            <i class="el-icon-setting"></i>
-            <span slot="title">导航四</span>
-          </el-menu-item>
+          <el-submenu index="4">
+            <template slot="title">
+              <i class="el-icon-setting"></i>
+              <span>设置</span>
+            </template>
+            <el-menu-item-group>
+              <el-menu-item index="/layout/setPassword">修改密码</el-menu-item>
+              <el-menu-item index="1">添加分类</el-menu-item>
+            </el-menu-item-group>
+          </el-submenu>
         </el-menu>
       </div>
       <div class="content">
@@ -51,22 +59,84 @@
 
 <script>
     export default {
-        name: "layout"
+        name: "layout",
+      data(){
+          return{
+            avatar:'',
+            desc:'',
+            nickname:''
+          }
+      },
+      methods:{
+          getData(){
+            this.avatar = this.$store.state.userinfo.avatar;
+            this.desc = this.$store.state.userinfo.desc;
+            this.nickname = this.$store.state.userinfo.nickname
+          },
+        toggleToUser(){
+            this.$router.push('/layout/edituser')
+        }
+      },
+      created(){
+          this.getData()
+      }
     }
 </script>
 
 <style scoped lang="scss">
 .wrapper{
-  .header h2{
+  .header{
+    h2{
+      text-align: center;
+      margin-left: 200px;
+      height: 60px;
+      line-height: 60px;
+      border-bottom: 2px solid #ccc;
+      background: aqua;
+      position:relative;
+    }
+  }
+  .portrait{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 200px;
+    height: 150px;
+    background-color:#545c64;
     text-align: center;
-    margin-left: 200px;
-    height: 60px;
-    line-height: 60px;
-    border-bottom: 2px solid #ccc;
+    .imgs{
+      position: absolute;
+      left: 10px;
+      top: 30px;
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+    }
+    .nick{
+      position: absolute;
+      top: 40px;
+      left: 90px;
+      font-size: 20px;
+      color: #fff;
+    }
+    .describe{
+      position: absolute;
+      top: 90px;
+      left: 10px;
+      color: #fff;
+    }
+    /deep/{
+      .el-button {
+        position: absolute;
+        left: 40px;
+        bottom: 0;
+      }
+    }
+
   }
   .sidebar{
     position: fixed;
-    top: 0;
+    top: 150px;
     left: 0;
     bottom: 0;
     width: 200px;

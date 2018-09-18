@@ -35,7 +35,7 @@
           label="操作"
           width="250">
           <template slot-scope="scope">
-            <el-button @click="queryUser" type="primary" round class="btn">查看用户</el-button>
+            <el-button @click="queryUser(scope.row)" type="primary" round class="btn">查看用户</el-button>
             <el-button @click="deleteUser(scope.row._id)" type="danger" round class="btn">删除用户</el-button>
           </template>
         </el-table-column>
@@ -44,7 +44,7 @@
         background
         layout="prev, pager, next"
         @current-change="pageChange"
-        :total="50">
+        :total="count">
       </el-pagination>
     </div>
 </template>
@@ -55,14 +55,17 @@
         return{
           tableData:[
           ],
-          page:1
+          page:1,
+          num1:6,
+          count:0
         }
       },
       methods:{
         getData(){
-          this.$axios.get('user',{pn:this.page}).then(res=>{
+          this.$axios.get('user',{pn:this.page,size:this.num1}).then(res=>{
             if(res.code == 200){
               this.tableData = res.data
+              this.count = res.count
             }
           })
         },
@@ -71,8 +74,9 @@
           this.page = page
           this.getData();
         },
-        queryUser(){
-
+        queryUser(res){
+          this.$store.commit('CHANGE_USERDATA',res)
+          this.$router.push('/layout/userDetail')
         },
         deleteUser(id){
           this.$confirm('此操作将永久删除该管理员, 是否继续?', '警告!', {
@@ -110,8 +114,15 @@
     height: 80px;
     border-radius: 50%;
   }
-    .btn{
-      width: 100px;
-      height: 40px;
-    }
+  .btn{
+    width: 100px;
+    height: 40px;
+  }
+  /*/deep/{*/
+    /*.el-pagination{*/
+      /*position: fixed;*/
+      /*left: 200px;*/
+      /*bottom: 0;*/
+    /*}*/
+  /*}*/
 </style>
