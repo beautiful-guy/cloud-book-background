@@ -12,7 +12,8 @@ const store = new Vuex.Store({
       email:'',
       nickname:''
     },
-    userdata:{}
+    userdata:{},
+    categoryid:""
   },
   mutations:{
     CHANGE_USERINFO(state,userinfo){
@@ -20,6 +21,9 @@ const store = new Vuex.Store({
     },
     CHANGE_USERDATA(state,userdata){
       state.userdata = userdata
+    },
+    CHANG_CATEGORYID(state,categoryid){
+      state.categoryid = categoryid
     }
   },
   actions:{},

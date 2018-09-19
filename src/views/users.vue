@@ -56,7 +56,7 @@
           tableData:[
           ],
           page:1,
-          num1:6,
+          num1:10,
           count:0
         }
       },

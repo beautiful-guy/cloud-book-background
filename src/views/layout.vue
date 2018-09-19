@@ -22,21 +22,31 @@
             </template>
             <el-menu-item-group>
               <template slot="title">用户管理</template>
-              <el-menu-item index="/layout/index">首页</el-menu-item>
-              <el-menu-item index="/layout/users">用户管理</el-menu-item>
-              <el-menu-item index="/layout/addusers">添加用户</el-menu-item>
-              <el-menu-item index="/login">重新登录</el-menu-item>
+              <el-menu-item index="index">首页</el-menu-item>
+              <el-menu-item index="users">用户管理</el-menu-item>
+              <el-menu-item index="addusers">添加用户</el-menu-item>
             </el-menu-item-group>
           </el-submenu>
           <el-submenu index="2">
             <template slot="title">
-              <i class="el-icon-location"></i>
+              <i class="el-icon-menu"></i>
               <span>分类管理</span>
             </template>
             <el-menu-item-group>
               <template slot="title">分类管理</template>
-              <el-menu-item index="/layout/getallbooks">分类列表</el-menu-item>
-              <el-menu-item index="/layout/users">添加分类</el-menu-item>
+              <el-menu-item index="getallbooks">分类列表</el-menu-item>
+              <el-menu-item index="addcategory">添加分类</el-menu-item>
+            </el-menu-item-group>
+          </el-submenu>
+          <el-submenu index="3">
+            <template slot="title">
+              <i class="el-icon-menu"></i>
+              <span>轮播图管理</span>
+            </template>
+            <el-menu-item-group>
+              <template slot="title">轮播图管理</template>
+              <el-menu-item index="getallswiper">轮播图列表</el-menu-item>
+              <el-menu-item index="addcategory">添加轮播图</el-menu-item>
             </el-menu-item-group>
           </el-submenu>
           <el-submenu index="4">
@@ -45,8 +55,9 @@
               <span>设置</span>
             </template>
             <el-menu-item-group>
-              <el-menu-item index="/layout/setPassword">修改密码</el-menu-item>
-              <el-menu-item index="1">添加分类</el-menu-item>
+              <el-menu-item index="setPassword">修改密码</el-menu-item>
+              <el-menu-item index="/login">重新登录</el-menu-item>
+              <el-menu-item index="1">退出登录</el-menu-item>
             </el-menu-item-group>
           </el-submenu>
         </el-menu>

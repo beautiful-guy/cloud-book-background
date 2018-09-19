@@ -13,7 +13,10 @@ const components = {
   edituser:()=>import('@/views/edituser'),
   userDetail:()=>import('@/views/userDetail'),
   getallbooks:()=>import('@/bookComponent/getallbooks'),
-  setPassword:()=>import('@/views/setPassword')
+  setPassword:()=>import('@/views/setPassword'),
+  bookdetail:()=>import('@/bookComponent/bookdetail'),
+  addcategory:()=>import('@/bookComponent/addcategory'),
+  getallswiper:()=>import('@/swiper/getallswiper')
 }
 export default new Router({
   routes: [
@@ -69,6 +72,20 @@ export default new Router({
         {
           path:'setPassword',
           component:components.setPassword
+        },
+        {
+          path:'bookdetail',
+          component:components.bookdetail
+        },
+        {
+          path:'addcategory',
+          name:'添加分类',
+          component:components.addcategory
+        },
+        {
+          path:'getallswiper',
+          name:'获取所有轮播图',
+          component:components.getallswiper
         }
       ]
     }

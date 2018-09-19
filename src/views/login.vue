@@ -4,7 +4,7 @@
   <div class="main-view">
     <h2 class="main-view-title">请登录</h2>
     <div class="main-view-wrapper">
-    <el-form refs="form" :model="formData" :rules="rules">
+    <el-form ref="formData" :model="formData" :rules="rules">
       <el-form-item label="用户名:" prop="username">
         <el-input v-model="formData.username" placeholder="请输入用户名"></el-input>
       </el-form-item>
@@ -14,7 +14,7 @@
     </el-form>
       <el-row class="btn">
         <el-button @click="handlelogin" type="primary" :loading="isloading">登录</el-button>
-        <el-button @click="resetForm">重置</el-button>
+        <el-button @click="resetForm('formData')">重置</el-button>
       </el-row>
     </div>
   </div>
@@ -73,9 +73,8 @@
             this.isloading = false;
           })
         },
-        resetForm() {
-          this.formData.username = '';
-          this.formData.password = '';
+        resetForm(formName) {
+          this.$refs[formName].resetFields();
         },
       }
     }
