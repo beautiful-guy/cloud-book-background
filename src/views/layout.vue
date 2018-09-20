@@ -46,7 +46,7 @@
             <el-menu-item-group>
               <template slot="title">轮播图管理</template>
               <el-menu-item index="getallswiper">轮播图列表</el-menu-item>
-              <el-menu-item index="addcategory">添加轮播图</el-menu-item>
+              <el-menu-item index="addswiper">添加轮播图</el-menu-item>
             </el-menu-item-group>
           </el-submenu>
           <el-submenu index="4">

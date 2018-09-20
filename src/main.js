@@ -7,6 +7,9 @@ import ElementUI from 'element-ui';
 import 'element-ui/lib/theme-chalk/index.css';
 import {$axios} from "./utils";
 import store from './store'
+import upimg from './components/upimg'
+
+Vue.component('upload-img',upimg)
 // 执行了里面对象的install方法，将install方法里所有的组件声明为全局组件
 Vue.use(ElementUI);
 Vue.config.productionTip = false

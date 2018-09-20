@@ -13,7 +13,9 @@ const store = new Vuex.Store({
       nickname:''
     },
     userdata:{},
-    categoryid:""
+    categoryid:"",
+    bookdata:{},
+    // otherbookdata:{}
   },
   mutations:{
     CHANGE_USERINFO(state,userinfo){
@@ -24,7 +26,13 @@ const store = new Vuex.Store({
     },
     CHANG_CATEGORYID(state,categoryid){
       state.categoryid = categoryid
-    }
+    },
+    CHANGE_BOOKDATA(state,bookdata){
+      state.bookdata = bookdata
+    },
+    // CHANGE_OTHERBOOKDATA(state,otherbookdata){
+    //   state.otherbookdata = otherbookdata
+    // }
   },
   actions:{},
   plugins: [createPersistedState(

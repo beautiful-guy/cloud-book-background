@@ -16,7 +16,10 @@ const components = {
   setPassword:()=>import('@/views/setPassword'),
   bookdetail:()=>import('@/bookComponent/bookdetail'),
   addcategory:()=>import('@/bookComponent/addcategory'),
-  getallswiper:()=>import('@/swiper/getallswiper')
+  getallswiper:()=>import('@/swiper/getallswiper'),
+  swiperdetail:()=>import('@/swiper/swiperdetail'),
+  addswiper:()=>import('@/swiper/addswiper'),
+  alertswiper:()=>import('@/swiper/alertswiper')
 }
 export default new Router({
   routes: [
@@ -86,6 +89,21 @@ export default new Router({
           path:'getallswiper',
           name:'获取所有轮播图',
           component:components.getallswiper
+        },
+        {
+          path:'swiperdetail',
+          name:'轮播图详情',
+          component:components.swiperdetail
+        },
+        {
+          path:'addswiper',
+          name:'添加轮播图',
+          component:components.addswiper
+        },
+        {
+          path:'alertswiper',
+          name:'修改轮播图',
+          component:components.alertswiper
         }
       ]
     }
